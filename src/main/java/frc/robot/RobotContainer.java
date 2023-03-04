@@ -37,17 +37,18 @@ public class RobotContainer {
     private final Arm arm;
     private final ArmCmd armCmd;
 
+    private final Claw claw;
+    private final ClawCmd clawCmd;
+
+    private final ClawPneumatics clawPneumatics;
+    private final ClawPneumaticsCmd clawPneumaticsCmd;
+
     private final Extender extender;
     private final ExtenderCmd extenderCmd;
 
     private final Wrist wrist;
     private final WristCmd wristCmd;
 
-    private final Claw claw;
-    private final ClawCmd clawCmd;
-
-    private final ClawPneumatics clawPneumatics;
-    private final ClawPneumaticsCmd clawPneumaticsCmd;
 
     private final Joystick driverJoystick = new Joystick(OIConstants.kDriverControllerPort);
 

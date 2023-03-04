@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class ClawPneumatics extends SubsystemBase {
   /** Creates a new pneumatics. */
-  private final static DoubleSolenoid solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0,7);
+  private final static DoubleSolenoid solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4,5);
 
 
   @Override
@@ -21,7 +21,7 @@ public class ClawPneumatics extends SubsystemBase {
 
   public void ClawPneumatics(XboxController controller)
   {
-    if( controller.getYButton() ) //out
+    if( controller.getBButton() ) //out
     solenoid.set(DoubleSolenoid.Value.kForward);
     if( controller.getAButton() ) //in
     solenoid.set(DoubleSolenoid.Value.kReverse);

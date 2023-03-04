@@ -7,12 +7,24 @@ import edu.wpi.first.math.util.Units;
 
 public final class Constants {
 
+    public static final class GearRatios{
+        public static final double armGearRatio = 1/240;
+        public static final double extenderGearRatio = 1/27;
+    }
+
     public static final class BaseConstants{
+
+        public static final double Falcon_Ticks_Per_Rev = 2048;
+
         //Pigeon 2.0 Gyro
         public static final int PigeonID = 13;
 
         //Base IDs for arm, arm extender, and wrist
         public static final int armID = 14;
+        public static final double armFLimit = 10240;
+        public static final double armRLimit = 10240;
+
+
         public static final int extenderID = 15;
         public static final int wristID = 16;
 
@@ -25,10 +37,17 @@ public final class Constants {
 
     public static final class SpeedScaleFactors{
         public static final double SwerveMaxSpeed = 0.57; //Speed in percentage
-        public static final double armSpeed = 0.1;
-        public static final double extenderSpeed = 0.1;
-        public static final double wristSpeed = 0.1;
-        public static final double clawSpeed = 0.1;
+        public static final double armSpeed = 0.5;
+        public static final double extenderSpeed = 0.5;
+        public static final double wristSpeed = 0.2;
+        public static final double clawSpeed = 0.3;
+    }
+
+    public static final class CurrentLimits{
+        public static final int clawAMPLimit = 15;
+        public static final int armAMPLimit = 30;
+        public static final int extenderAMPLimit = 30; 
+        public static final int wristAMPLimit = 35;
     }
 
     public static final class DpadConstants{
@@ -36,6 +55,7 @@ public final class Constants {
         public static final int DELTA_ANGLE = 10;
         public static final int LEFT_DPAD = 270;
         public static final int UP_DPAD = 360;
+        public static final int GamePad_UP_DPAD = 0;
         public static final int DOWN_DPAD = 180;
     }
 
@@ -93,19 +113,19 @@ public final class Constants {
         public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
 
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetDeg = 359.296;//10
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetDeg = 211.992;//9
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetDeg = 217.353;//11
-        public static final double kBackRightDriveAbsoluteEncoderOffsetDeg = 3.867;//12
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetDeg = 269.297;//10
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetDeg = 237.920;//9
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetDeg = 127.617;//11
+        public static final double kBackRightDriveAbsoluteEncoderOffsetDeg = 274.834;//12
 
-        public static final double kPhysicalMaxSpeedMetersPerSecond = 4.4; // Original: 5
-        public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI; // Original: 2 * 2 * Math.PI
+        public static final double kPhysicalMaxSpeedMetersPerSecond = 4.4;
+        public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond * SpeedScaleFactors.SwerveMaxSpeed;// / 4;
+        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond * SpeedScaleFactors.SwerveMaxSpeed;
         public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = //
-                kPhysicalMaxAngularSpeedRadiansPerSecond * SpeedScaleFactors.SwerveMaxSpeed;// / 4;
-        public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3; //Original: 3
-        public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3; //Original 3
+                kPhysicalMaxAngularSpeedRadiansPerSecond * SpeedScaleFactors.SwerveMaxSpeed;
+        public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
+        public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
     }
 
     public static final class AutoConstants {

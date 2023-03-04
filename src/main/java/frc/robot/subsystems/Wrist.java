@@ -1,7 +1,8 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -9,10 +10,13 @@ import frc.robot.Constants.BaseConstants;
 
 public class Wrist extends SubsystemBase{
     /** Creates a new Arm */
-    private CANSparkMax wrist;
+    private TalonFX wrist;
 
     public Wrist() {
-        wrist = new CANSparkMax(BaseConstants.wristID, MotorType.kBrushless);
+        wrist = new TalonFX(BaseConstants.wristID);
+
+        wrist.set(ControlMode.PercentOutput, 0.0);
+        wrist.setNeutralMode(NeutralMode.Brake);
     }
 
     @Override
@@ -21,16 +25,12 @@ public class Wrist extends SubsystemBase{
     }
 
     public void wrist( XboxController controller, double speed){
-        if( controller.getAButton()){
-            wrist.set(speed);
+        if( controller.getLeftBumper()){
+            wrist.set(ControlMode.PercentOutput, speed);
+        }else if( controller.getRightBumper()){
+            wrist.set(ControlMode.PercentOutput, -speed);
         }else{
-            wrist.set(0);
-        }
-
-        if( controller.getBButton()){
-            wrist.set(-speed);
-        }else{
-            wrist.set(0);
+            wrist.set(ControlMode.PercentOutput, 0);
         }
     }
 }
