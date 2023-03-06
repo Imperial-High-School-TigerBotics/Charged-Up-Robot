@@ -36,4 +36,5 @@ public class Claw extends SubsystemBase{
             claw2.set(0);
         }
     }
+
 }

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.OIConstants;
@@ -103,6 +104,10 @@ public class RobotContainer {
         // in your code that will be used by all path following commands.
         HashMap<String, Command> eventMap = new HashMap<>();
         eventMap.put("marker1", new PrintCommand("Passed marker 1"));
+        eventMap.put("marker1", new InstantCommand(clawPneumatics::ClawAuto));
+        eventMap.put("marker2", new PrintCommand("Passed marker 2"));
+        eventMap.put("marker3", new PrintCommand("Passed marker 3"));
+        
         //eventMap.put("intakeDown", new IntakeDown()); //Once marker is passed, command will execute
 
         // Create the AutoBuilder. This only needs to be created once when robot code starts, not every time you want to create an auto command. A good place to put this is in RobotContainer along with your subsystems.

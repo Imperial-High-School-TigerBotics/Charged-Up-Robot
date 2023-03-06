@@ -27,4 +27,8 @@ public class ClawPneumatics extends SubsystemBase {
     solenoid.set(DoubleSolenoid.Value.kReverse);
     
   }
+
+  public void ClawAuto(){
+    solenoid.set(DoubleSolenoid.Value.kForward);
+  }
 }

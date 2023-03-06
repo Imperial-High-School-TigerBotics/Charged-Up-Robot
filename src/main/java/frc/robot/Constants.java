@@ -36,7 +36,8 @@ public final class Constants {
     }
 
     public static final class SpeedScaleFactors{
-        public static final double SwerveMaxSpeed = 0.57; //Speed in percentage
+        public static final double SwerveMaxSpeed = 0.65; //Speed in percentage
+        public static final double SwerveMaxTurnSpeed = 0.42;
         public static final double armSpeed = 0.5;
         public static final double extenderSpeed = 0.5;
         public static final double wristSpeed = 0.2;
@@ -123,7 +124,7 @@ public final class Constants {
 
         public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond * SpeedScaleFactors.SwerveMaxSpeed;
         public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = //
-                kPhysicalMaxAngularSpeedRadiansPerSecond * SpeedScaleFactors.SwerveMaxSpeed;
+                kPhysicalMaxAngularSpeedRadiansPerSecond * SpeedScaleFactors.SwerveMaxTurnSpeed;
         public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
         public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
     }

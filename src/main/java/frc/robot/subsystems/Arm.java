@@ -26,7 +26,7 @@ public class Arm extends SubsystemBase{
         arm.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
         arm.setSelectedSensorPosition(0);
 
-        arm.configForwardSoftLimitThreshold(271505);
+        arm.configForwardSoftLimitThreshold(350000);
 
         arm.configReverseSoftLimitThreshold(0);
 
