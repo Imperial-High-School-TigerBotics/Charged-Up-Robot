@@ -36,19 +36,12 @@ public class SwerveModule {
         this.absoluteEncoderOffsetDeg = absoluteEncoderOffset;
         this.absoluteEncoderReversed = absoluteEncoderReversed;
         absoluteEncoder = new CANCoder(absoluteEncoderId);
-        
-
-        new Thread(() -> {
-            try {
-                Thread.sleep(5000);
-                absoluteEncoder.setPositionToAbsolute();
-            absoluteEncoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
-            } catch (Exception e) {
-            }
-        }).start();
 
         driveMotor = new CANSparkMax(driveMotorId, MotorType.kBrushless);
         turningMotor = new CANSparkMax(turningMotorId, MotorType.kBrushless);
+
+        absoluteEncoder.setPositionToAbsolute();
+        absoluteEncoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
 
         driveMotor.setIdleMode(IdleMode.kBrake);
         turningMotor.setIdleMode(IdleMode.kBrake);
@@ -66,7 +59,6 @@ public class SwerveModule {
 
         turningPidController = new PIDController(ModuleConstants.kPTurning, 0, 0);
         turningPidController.enableContinuousInput(-Math.PI, Math.PI);
-
 
         resetEncoders();
 
@@ -94,10 +86,10 @@ public class SwerveModule {
     }
 
     public double getAbsoluteEncoderDeg() {
-        
         double angle = absoluteEncoder.getAbsolutePosition();
-        angle -= absoluteEncoderOffsetDeg;
-        return angle * (absoluteEncoderReversed ? -1.0 : 1.0);
+        double offset = absoluteEncoderOffsetDeg;
+        
+        return offset - angle;
     }
 
     public double getRawAbsoluteEncoder(){
@@ -106,8 +98,8 @@ public class SwerveModule {
     }
 
     public void resetEncoders() {
-        driveEncoder.setPosition(0);
         turningEncoder.setPosition(Units.degreesToRadians(getAbsoluteEncoderDeg()));
+        driveEncoder.setPosition(0);
     }
 
     public SwerveModuleState getState() {
