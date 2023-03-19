@@ -46,6 +46,21 @@ public class Extender extends SubsystemBase {
         extenderMotor.set(ControlMode.PercentOutput, outputValue);
     }
 
+    public void moveToSetpoint(double setpoint) {
+        double feedforwardValue = kF * setpoint;
+        double feedbackValue = kP * (setpoint - extenderMotor.getSelectedSensorPosition());
+        double outputValue = feedforwardValue + feedbackValue;
+    
+        double currentPosition = extenderMotor.getSelectedSensorPosition();
+        if (currentPosition >= maxPosition && outputValue > 0) {
+            outputValue = 0;
+        } else if (currentPosition <= minPosition && outputValue < 0) {
+            outputValue = 0;
+        }
+    
+        extenderMotor.set(ControlMode.PercentOutput, outputValue);
+    }
+
     public void resetExtenderPos(){
         extenderMotor.setSelectedSensorPosition(0);
     }
