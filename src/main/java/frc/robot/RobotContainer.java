@@ -74,7 +74,7 @@ public class RobotContainer {
         extenderCmd = new ExtenderCmd(extender);
         extender.setDefaultCommand(extenderCmd);
 
-        wrist = new Wrist();
+        wrist = new Wrist(BaseConstants.wristID, 1, 0.0000001, controlsController, 145000, 0);
         wristCmd = new WristCmd(wrist);
         wrist.setDefaultCommand(wristCmd);
 

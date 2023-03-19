@@ -29,6 +29,8 @@ public class Extender extends SubsystemBase {
         this.extenderMotor.setNeutralMode(NeutralMode.Brake);
         this.extenderMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
         this.extenderMotor.configClosedloopRamp(0.2);
+
+        resetExtenderPos();
     }
 
     public void moveExtender(double joystickValue) {

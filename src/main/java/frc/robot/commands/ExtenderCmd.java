@@ -13,7 +13,6 @@ public class ExtenderCmd extends CommandBase {
 
     @Override
     public void initialize() {
-        extender.resetExtenderPos();
     }
 
     @Override

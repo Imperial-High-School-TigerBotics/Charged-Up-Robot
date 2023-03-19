@@ -29,6 +29,8 @@ public class Arm extends SubsystemBase {
         this.armMotor.setNeutralMode(NeutralMode.Brake);
         this.armMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
         this.armMotor.configClosedloopRamp(0.2);
+
+        resetArmPos();
     }
 
     public void moveArm(double joystickValue) {

@@ -13,7 +13,6 @@ public class ArmCmd extends CommandBase {
 
     @Override
     public void initialize() {
-        arm.resetArmPos();
     }
 
     @Override
