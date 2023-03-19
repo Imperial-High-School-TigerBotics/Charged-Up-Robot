@@ -15,21 +15,22 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants.BaseConstants;
 import frc.robot.Constants.OIConstants;
 
 import frc.robot.commands.ArmCmd;
-import frc.robot.commands.ClawCmd;
 import frc.robot.commands.ExtenderCmd;
+import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.commands.TopFlapCmd;
 import frc.robot.commands.WristCmd;
-import frc.robot.commands.ClawPneumaticsCmd;
 
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Extender;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.TopFlap;
 import frc.robot.subsystems.Wrist;
-import frc.robot.subsystems.ClawPneumatics;
 
 public class RobotContainer {
 
@@ -38,17 +39,17 @@ public class RobotContainer {
     private final Arm arm;
     private final ArmCmd armCmd;
 
-    private final Claw claw;
-    private final ClawCmd clawCmd;
-
-    private final ClawPneumatics clawPneumatics;
-    private final ClawPneumaticsCmd clawPneumaticsCmd;
-
     private final Extender extender;
     private final ExtenderCmd extenderCmd;
 
     private final Wrist wrist;
     private final WristCmd wristCmd;
+
+    private final Intake intake;
+    private final IntakeCmd intakeCmd;
+
+    private final TopFlap topFlap;
+    private final TopFlapCmd topFlapCmd;
 
 
     private final Joystick driverJoystick = new Joystick(OIConstants.kDriverControllerPort);
@@ -65,11 +66,11 @@ public class RobotContainer {
                 () -> !driverJoystick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)));
 
 
-        arm = new Arm();
+        arm = new Arm(BaseConstants.armID, 1, 0.0000001, controlsController, 360000, 0);
         armCmd = new ArmCmd(arm);
         arm.setDefaultCommand(armCmd);
 
-        extender = new Extender();
+        extender = new Extender(BaseConstants.extenderID, 1, 0.0000001, controlsController, 145000, 0);
         extenderCmd = new ExtenderCmd(extender);
         extender.setDefaultCommand(extenderCmd);
 
@@ -77,13 +78,13 @@ public class RobotContainer {
         wristCmd = new WristCmd(wrist);
         wrist.setDefaultCommand(wristCmd);
 
-        claw = new Claw();
-        clawCmd = new ClawCmd(claw);
-        claw.setDefaultCommand(clawCmd);
+        intake = new Intake(controlsController);
+        intakeCmd = new IntakeCmd(intake);
+        intake.setDefaultCommand(intakeCmd);
 
-        clawPneumatics = new ClawPneumatics();
-        clawPneumaticsCmd = new ClawPneumaticsCmd(clawPneumatics);
-        clawPneumatics.setDefaultCommand(clawPneumaticsCmd);
+        topFlap = new TopFlap(controlsController);
+        topFlapCmd = new TopFlapCmd(topFlap);
+        topFlap.setDefaultCommand(topFlapCmd);
 
         configureButtonBindings();
     }
@@ -105,7 +106,6 @@ public class RobotContainer {
         // in your code that will be used by all path following commands.
         HashMap<String, Command> eventMap = new HashMap<>();
         eventMap.put("marker1", new PrintCommand("Passed marker 1"));
-        eventMap.put("marker1", new InstantCommand(clawPneumatics::ClawAuto));
         eventMap.put("marker2", new PrintCommand("Passed marker 2"));
         eventMap.put("marker3", new PrintCommand("Passed marker 3"));
         
@@ -116,8 +116,8 @@ public class RobotContainer {
         swerveSubsystem::getPose, // Pose2d supplier
         swerveSubsystem::resetOdometry, // Pose2d consumer, used to reset odometry at the beginning of auto
         swerveSubsystem.kinemetics(), // SwerveDriveKinematics
-        new PIDConstants(5.0, 0.0, 0.0), // Originally: 5.0 | PID constants to correct for translation error (used to create the X and Y PID controllers)
-        new PIDConstants(0.5, 0.0, 0.0), // PID constants to correct for rotation error (used to create the rotation controller)
+        new PIDConstants(0.65, 0.0, 0.0), // Originally: 5.0 | PID constants to correct for translation error (used to create the X and Y PID controllers)
+        new PIDConstants(0.75, 0.0, 0.0), // PID constants to correct for rotation error (used to create the rotation controller)
         swerveSubsystem::setModuleStates, // Module states consumer used to output to the drive subsystem
         eventMap,
         true, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true

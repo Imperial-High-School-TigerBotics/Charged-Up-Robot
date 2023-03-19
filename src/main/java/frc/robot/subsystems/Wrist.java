@@ -14,9 +14,8 @@ public class Wrist extends SubsystemBase{
 
     public Wrist() {
         wrist = new TalonFX(BaseConstants.wristID);
-
-        wrist.set(ControlMode.PercentOutput, 0.0);
         wrist.setNeutralMode(NeutralMode.Brake);
+        wrist.neutralOutput();
     }
 
     @Override
@@ -25,12 +24,12 @@ public class Wrist extends SubsystemBase{
     }
 
     public void wrist( XboxController controller, double speed){
-        if( controller.getLeftBumper()){
-            wrist.set(ControlMode.PercentOutput, speed);
-        }else if( controller.getRightBumper()){
-            wrist.set(ControlMode.PercentOutput, -speed);
+        if( controller.getRightBumper()){
+            wrist.set(ControlMode.PercentOutput, 0.3);
+        }else if(controller.getLeftBumper()){
+            wrist.set(ControlMode.PercentOutput, -0.3);
         }else{
-            wrist.set(ControlMode.PercentOutput, 0);
+            wrist.neutralOutput();
         }
     }
 }

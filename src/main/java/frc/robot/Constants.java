@@ -20,32 +20,33 @@ public final class Constants {
         public static final int PigeonID = 13;
 
         //Base IDs for arm, arm extender, and wrist
-        public static final int armID = 14;
-        public static final double armFLimit = 10240;
-        public static final double armRLimit = 10240;
+        public static final int armID = 16;
 
 
         public static final int extenderID = 15;
-        public static final int wristID = 16;
+        public static final int wristID = 14;
 
         //Claw IDs
-        public static final int claw1ID = 17;
-        public static final int claw2ID = 18;
+        public static final int Intake = 18;
+        public static final int TopFlap = 17;
+        public static final double TopFlapMax = 2;
+        public static final double TopFlapMin = 0.1;
 
         //Pneumatic IDs
     }
 
     public static final class SpeedScaleFactors{
-        public static final double SwerveMaxSpeed = 0.65; //Speed in percentage
-        public static final double SwerveMaxTurnSpeed = 0.42;
+        public static final double SwerveMaxSpeed = 0.75; //Speed in percentage
+        public static final double SwerveMaxTurnSpeed = 0.30;
         public static final double armSpeed = 0.5;
         public static final double extenderSpeed = 0.5;
-        public static final double wristSpeed = 0.2;
-        public static final double clawSpeed = 0.3;
+        public static final double wristSpeed = 0.3;
+        public static final double intake = 0.4;
+        public static final double topFlapSpeed = 0.4;
     }
 
     public static final class CurrentLimits{
-        public static final int clawAMPLimit = 15;
+        public static final int TopFlapAMPLimit = 20;
         public static final int armAMPLimit = 30;
         public static final int extenderAMPLimit = 30; 
         public static final int wristAMPLimit = 35;
@@ -91,7 +92,7 @@ public final class Constants {
 
         public static final int kFrontLeftTurningMotorPort = 3;
         public static final int kBackLeftTurningMotorPort = 1;
-        public static final int kFrontRightTurningMotorPort = 5;
+        public static final int kFrontRightTurningMotorPort =  5;
         public static final int kBackRightTurningMotorPort = 7;
 
         public static final boolean kFrontLeftTurningEncoderReversed = false;
@@ -104,29 +105,29 @@ public final class Constants {
         public static final boolean kFrontRightDriveEncoderReversed = false;
         public static final boolean kBackRightDriveEncoderReversed = false;
 
-        public static final int kFrontLeftDriveAbsoluteEncoderPort = 10; //Make sure encoder ports match with robot (CAN)
-        public static final int kBackLeftDriveAbsoluteEncoderPort = 9;
-        public static final int kFrontRightDriveAbsoluteEncoderPort = 11;
-        public static final int kBackRightDriveAbsoluteEncoderPort = 12;
+        public static final int kFrontLeftDriveAbsoluteEncoderPort = 11; //Make sure encoder ports match with robot (CAN)
+        public static final int kBackLeftDriveAbsoluteEncoderPort = 12;
+        public static final int kFrontRightDriveAbsoluteEncoderPort = 10;
+        public static final int kBackRightDriveAbsoluteEncoderPort = 9;
 
         public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = false;
         public static final boolean kBackLeftDriveAbsoluteEncoderReversed = false;
         public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
 
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetDeg = 269.297;//10
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetDeg = 237.920;//9
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetDeg = 127.617;//11
-        public static final double kBackRightDriveAbsoluteEncoderOffsetDeg = 274.834;//12
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetDeg = 127.353516;//11
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetDeg = 270.087891;//10
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetDeg = 273.603516;//12
+        public static final double kBackRightDriveAbsoluteEncoderOffsetDeg = 125.595703;//9
 
-        public static final double kPhysicalMaxSpeedMetersPerSecond = 4.4;
-        public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;
+        public static final double kPhysicalMaxSpeedMetersPerSecond = 4.4; // Original: 5
+        public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI; // Original: 2 * 2 * Math.PI
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond * SpeedScaleFactors.SwerveMaxSpeed;
+        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond * SpeedScaleFactors.SwerveMaxSpeed;// / 4;
         public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = //
-                kPhysicalMaxAngularSpeedRadiansPerSecond * SpeedScaleFactors.SwerveMaxTurnSpeed;
-        public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
-        public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
+                kPhysicalMaxAngularSpeedRadiansPerSecond * SpeedScaleFactors.SwerveMaxSpeed;// / 4;
+        public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3; //Original: 3
+        public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3; //Original 3
     }
 
     public static final class AutoConstants {
