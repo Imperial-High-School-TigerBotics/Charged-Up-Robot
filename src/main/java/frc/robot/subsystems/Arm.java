@@ -50,6 +50,21 @@ public class Arm extends SubsystemBase {
         armMotor.setSelectedSensorPosition(0);
     }
 
+    public void moveToSetpoint(double setpoint) {
+        double feedforwardValue = kF * setpoint;
+        double feedbackValue = kP * (setpoint - armMotor.getSelectedSensorPosition());
+        double outputValue = feedforwardValue + feedbackValue;
+    
+        double currentPosition = armMotor.getSelectedSensorPosition();
+        if (currentPosition >= maxPosition && outputValue > 0) {
+            outputValue = 0;
+        } else if (currentPosition <= minPosition && outputValue < 0) {
+            outputValue = 0;
+        }
+    
+        armMotor.set(ControlMode.PercentOutput, outputValue);
+    }
+
     public void stopArm() {
         armMotor.set(ControlMode.PercentOutput, 0.0);
     }
