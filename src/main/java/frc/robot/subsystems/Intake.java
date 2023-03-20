@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.BaseConstants;
 import frc.robot.Constants.SpeedScaleFactors;
 
@@ -19,6 +20,16 @@ public class Intake extends SubsystemBase{
 
         IntakeMotor.set(ControlMode.PercentOutput, 0.0);
         IntakeMotor.setNeutralMode(NeutralMode.Brake);
+    }
+    public void autoIntake(){ //Picks up Cubes & Drops Cones
+        intake();
+        new WaitCommand(5);
+        stop();
+    }
+    public void autoOuttake(){ //Picks up Cones & Drops Cubes
+        outtake();
+        new WaitCommand(5);
+        stop();
     }
 
     public void intake(){

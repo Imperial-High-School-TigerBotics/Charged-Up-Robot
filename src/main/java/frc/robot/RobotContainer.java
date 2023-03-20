@@ -19,6 +19,8 @@ import frc.robot.Constants.BaseConstants;
 import frc.robot.Constants.OIConstants;
 
 import frc.robot.commands.ArmCmd;
+import frc.robot.commands.ArmDrivePOSCmd;
+import frc.robot.commands.ConeNode3Cmd;
 import frc.robot.commands.ExtenderCmd;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -56,6 +58,7 @@ public class RobotContainer {
 
     public static XboxController driverController = new XboxController(OIConstants.kDriverControllerPort);
     public static XboxController controlsController = new XboxController(OIConstants.kControlsControllerPort);
+    public static XboxController testController = new XboxController(OIConstants.kTestControllerPort);
 
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
@@ -66,15 +69,15 @@ public class RobotContainer {
                 () -> !driverJoystick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)));
 
 
-        arm = new Arm(BaseConstants.armID, 1, 0.0000001, controlsController, 360000, 0);
+        arm = new Arm(BaseConstants.armID, 1, 0.0000000025, controlsController, 360000, 0);
         armCmd = new ArmCmd(arm);
         arm.setDefaultCommand(armCmd);
 
-        extender = new Extender(BaseConstants.extenderID, 1, 0.0000001, controlsController, 145000, 0);
+        extender = new Extender(BaseConstants.extenderID, 1, 0.0000001, controlsController, 145000, 0); // Max & Mins need adjustments
         extenderCmd = new ExtenderCmd(extender);
         extender.setDefaultCommand(extenderCmd);
 
-        wrist = new Wrist(BaseConstants.wristID, 1, 0.0000001, controlsController, 145000, 0);
+        wrist = new Wrist(BaseConstants.wristID, 1, 0.00000001, controlsController, 1000, -5000); //Wrist max and min still need to be tested
         wristCmd = new WristCmd(wrist);
         wrist.setDefaultCommand(wristCmd);
 
@@ -90,9 +93,14 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
+        //Driver Controller
         new JoystickButton(driverJoystick, 1).onTrue(Commands.runOnce(() -> swerveSubsystem.zeroHeading()));
-    }
 
+        //Test Controller
+        new JoystickButton(testController, 1).onTrue(new ArmDrivePOSCmd(arm, extender, intake, topFlap, wrist)); 
+        //Should perfectly position the arm, extender, intake, and top flap int a position that allows the driver to move without worry of arm breaking. Will think about having a doomsday button that gives free range control should anything go wrong.
+        new JoystickButton(testController, 2).onTrue(new ConeNode3Cmd(arm, extender, intake, topFlap, wrist)); //Should prefectly position arm, extender, intake, and top flap to drop cone in the third node
+    }
 
      public Command getAutonomousCommand() {
 

@@ -149,6 +149,7 @@ public final class Constants {
     public static final class OIConstants {
         public static final int kDriverControllerPort = 0;
         public static final int kControlsControllerPort = 1;
+        public static final int kTestControllerPort = 2;
 
         public static final int kDriverYAxis = 1; //Make sure constants work for Logitech & Xbox controller
         public static final int kDriverXAxis = 0;

@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Extender;
 
@@ -13,11 +14,12 @@ public class ExtenderCmd extends CommandBase {
 
     @Override
     public void initialize() {
+       // Timer.delay(5);
     }
 
     @Override
     public void execute() {
-        if (extender.isJoystickMoved()) {
+         if(extender.isJoystickMoved()) {
             extender.moveExtender(extender.controller.getRawAxis(0));
         } else {
             extender.stopExtender();
@@ -26,6 +28,7 @@ public class ExtenderCmd extends CommandBase {
         if(extender.buttonPressed()){
             extender.resetExtenderPos();
         }
+       // extender.moveToSetpoint(70000);
     }
 
     @Override

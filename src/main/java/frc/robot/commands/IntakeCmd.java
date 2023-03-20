@@ -13,9 +13,9 @@ public class IntakeCmd extends CommandBase{
 
     @Override
     public void execute(){
-        if(intake.getX()){
+        if(intake.getX()){ //Picks up Cubes & Drops Cones
             intake.intake();
-        }else if(intake.getY()){
+        }else if(intake.getY()){ //Picks up Cones & Drops Cubes
             intake.outtake();
         }else{
             intake.stop();

@@ -22,11 +22,13 @@ public class WristCmd extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    wrist.resetWristPos();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //wrist.moveToSetpoint(5);
   }
 
   // Called once the command ends or is interrupted.
