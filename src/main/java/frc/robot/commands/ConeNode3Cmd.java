@@ -39,7 +39,8 @@ public class ConeNode3Cmd extends CommandBase{
 
     @Override
     public void execute(){
-        new WaitCommand(5).andThen(arm.moveToSetpoint(300000));
+        Commands.waitSeconds(5.0).asProxy()
+            .andThen(arm.moveToSetpoint(300000));
         /*new WaitCommand(5);
         extender.moveToSetpoint(70000);
         new WaitCommand(5);
