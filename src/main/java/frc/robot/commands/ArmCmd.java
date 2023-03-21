@@ -23,7 +23,7 @@ public class ArmCmd extends CommandBase {
         } else {
             arm.stopArm();
         } */
-        arm.moveToSetpoint(300000);
+        //arm.moveToSetpoint(300000);
 
     }
 

@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Extender;
@@ -38,13 +39,13 @@ public class ConeNode3Cmd extends CommandBase{
 
     @Override
     public void execute(){
-        arm.moveToSetpoint(300000);
-        new WaitCommand(5);
+        new WaitCommand(5).andThen(arm.moveToSetpoint(300000));
+        /*new WaitCommand(5);
         extender.moveToSetpoint(70000);
         new WaitCommand(5);
         wrist.moveToSetpoint(-10000);
         new WaitCommand(5);
-        intake.autoIntake(); //Intake because it picks up cubes amd drops cones
+        intake.autoIntake();*/
     }
 
     @Override
