@@ -55,7 +55,7 @@ public class Arm extends SubsystemBase {
 
     public Command moveToSetpoint(double setpoint) {
         double feedforwardValue = kF * setpoint;
-        double feedbackValue = kP * (setpoint - armMotor.getSelectedSensorPosition());
+        //double feedbackValue = kP * (setpoint - armMotor.getSelectedSensorPosition());
         double outputValue = feedforwardValue;
     
         double currentPosition = armMotor.getSelectedSensorPosition();

@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.BaseConstants;
 import frc.robot.Constants.OIConstants;
 
 import frc.robot.commands.ArmCmd;
-import frc.robot.commands.ArmDrivePOSCmd;
-import frc.robot.commands.ConeNode3Cmd;
 import frc.robot.commands.ExtenderCmd;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -97,9 +97,16 @@ public class RobotContainer {
         new JoystickButton(driverJoystick, 1).onTrue(Commands.runOnce(() -> swerveSubsystem.zeroHeading()));
 
         //Test Controller
-        new JoystickButton(testController, 1).onTrue(new ArmDrivePOSCmd(arm, extender, intake, topFlap, wrist)); 
-        //Should perfectly position the arm, extender, intake, and top flap int a position that allows the driver to move without worry of arm breaking. Will think about having a doomsday button that gives free range control should anything go wrong.
-        new JoystickButton(testController, 2).onTrue(new ConeNode3Cmd(arm, extender, intake, topFlap, wrist)); //Should prefectly position arm, extender, intake, and top flap to drop cone in the third node
+        new JoystickButton(testController, 2).onTrue(getConeNode3Cmd()); //Should prefectly position arm, extender, intake, and top flap to drop cone in the third node
+    }
+
+        Command getConeNode3Cmd(){
+        SequentialCommandGroup group = new SequentialCommandGroup();
+                group.addCommands(
+                new WaitCommand(5), 
+                arm.moveToSetpoint(300000)
+                );
+                return group;
     }
 
      public Command getAutonomousCommand() {
