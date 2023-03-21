@@ -54,6 +54,9 @@ public class Arm extends SubsystemBase {
     }
 
     public Command moveToSetpoint(double setpoint) {
+
+        
+
         double feedforwardValue = kF * setpoint;
         //double feedbackValue = kP * (setpoint - armMotor.getSelectedSensorPosition());
         double outputValue = feedforwardValue;
@@ -70,7 +73,7 @@ public class Arm extends SubsystemBase {
         }
     
         armMotor.set(ControlMode.PercentOutput, outputValue);
-        return null;
+        return this.getCurrentCommand();
     }
 
     public void stopArm() {
