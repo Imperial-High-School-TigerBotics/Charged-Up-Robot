@@ -97,7 +97,7 @@ public class RobotContainer {
         new JoystickButton(driverJoystick, 1).onTrue(Commands.runOnce(() -> swerveSubsystem.zeroHeading()));
 
         //Test Controller
-        new JoystickButton(testController, 2).onTrue(getConeNode3Cmd()); //Should prefectly position arm, extender, intake, and top flap to drop cone in the third node
+        new JoystickButton(testController, 2).onTrue(Commands.runOnce(() -> getConeNode3Cmd())); //Should prefectly position arm, extender, intake, and top flap to drop cone in the third node
     }
 
         Command getConeNode3Cmd(){
