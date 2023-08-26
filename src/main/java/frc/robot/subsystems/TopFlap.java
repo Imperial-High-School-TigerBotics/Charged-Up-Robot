@@ -37,7 +37,7 @@ public class TopFlap extends SubsystemBase{
     public void moveToMaxPosition(){
         if(TopFlapCoder.getPosition() < maxPosition){
             TopFlap.set(SpeedScaleFactors.topFlapSpeed);
-        }else{
+        }else if(TopFlapCoder.getPosition() >= maxPosition){
             TopFlap.set(0);
         }
     }
@@ -45,20 +45,32 @@ public class TopFlap extends SubsystemBase{
     public void moveToMinPosition(){
         if(TopFlapCoder.getPosition() > minPosition){
             TopFlap.set(-SpeedScaleFactors.topFlapSpeed);
-        }else{
+        }else if(TopFlapCoder.getPosition() <= minPosition){
             TopFlap.set(0);
         }
+    }
+
+    public void movePositive(){
+        TopFlap.set(0.1);
+    }
+
+    public void moveNegative(){
+        TopFlap.set(-0.1);
+    }
+
+    public void stopMotor(){
+        TopFlap.set(0.0);
     }
 
     public void resetTopFlapCoder(){
         TopFlapCoder.setPosition(0);
     }
 
-    public boolean APressed(){
-        return controller.getAButton();
+    public boolean LBPressed(){
+        return controller.getLeftBumper();
     }
-    public boolean BPressed(){
-        return controller.getBButton();
+    public boolean RBPressed(){
+        return controller.getRightBumper();
     }
     
     @Override

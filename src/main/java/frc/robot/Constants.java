@@ -29,24 +29,24 @@ public final class Constants {
         //Claw IDs
         public static final int Intake = 18;
         public static final int TopFlap = 17;
-        public static final double TopFlapMax = 2;
-        public static final double TopFlapMin = 0.1;
+        public static final double TopFlapMax = 0.6;//1.15;
+        public static final double TopFlapMin = 0.45;
 
         //Pneumatic IDs
     }
 
     public static final class SpeedScaleFactors{
         public static final double SwerveMaxSpeed = 0.75; //Speed in percentage
-        public static final double SwerveMaxTurnSpeed = 0.30;
+        public static final double SwerveMaxTurnSpeed = 0.20;
         public static final double armSpeed = 0.5;
         public static final double extenderSpeed = 0.5;
         public static final double wristSpeed = 0.3;
         public static final double intake = 0.4;
-        public static final double topFlapSpeed = 0.4;
+        public static final double topFlapSpeed = 0.2;
     }
 
     public static final class CurrentLimits{
-        public static final int TopFlapAMPLimit = 20;
+        public static final int TopFlapAMPLimit = 10;
         public static final int armAMPLimit = 30;
         public static final int extenderAMPLimit = 30; 
         public static final int wristAMPLimit = 35;
@@ -115,10 +115,10 @@ public final class Constants {
         public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
 
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetDeg = 127.353516;//11
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetDeg = 270.087891;//10
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetDeg = 273.603516;//12
-        public static final double kBackRightDriveAbsoluteEncoderOffsetDeg = 125.595703;//9
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetDeg = 127.617188;//11
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetDeg = 273.691406;//10
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetDeg = 270.087891;//12
+        public static final double kBackRightDriveAbsoluteEncoderOffsetDeg = 123.222656;//9
 
         public static final double kPhysicalMaxSpeedMetersPerSecond = 4.4; // Original: 5
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI; // Original: 2 * 2 * Math.PI
@@ -149,13 +149,12 @@ public final class Constants {
     public static final class OIConstants {
         public static final int kDriverControllerPort = 0;
         public static final int kControlsControllerPort = 1;
-        public static final int kTestControllerPort = 2;
 
         public static final int kDriverYAxis = 1; //Make sure constants work for Logitech & Xbox controller
         public static final int kDriverXAxis = 0;
         public static final int kDriverRotAxis = 4;
         public static final int kDriverFieldOrientedButtonIdx = 1;
 
-        public static final double kDeadband = 0.01;
+        public static final double kDeadband = 0.12;
     }
 }

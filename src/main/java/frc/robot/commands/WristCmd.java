@@ -21,20 +21,18 @@ public class WristCmd extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    wrist.resetWristPos();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //wrist.moveToSetpoint(5);
+   wrist.wrist(RobotContainer.controlsController, SpeedScaleFactors.wristSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    wrist.stopWrist();
+
   }
 
   // Returns true when the command should end.

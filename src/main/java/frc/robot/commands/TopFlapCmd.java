@@ -18,10 +18,12 @@ public class TopFlapCmd extends CommandBase{
         topFlap.resetTopFlapCoder();
     }
     public void execute(){
-        if(topFlap.APressed()){
-            topFlap.moveToMaxPosition();
-        }else if(topFlap.BPressed()){
-            topFlap.moveToMinPosition();
+        if(topFlap.LBPressed()){
+            topFlap.movePositive();
+        }else if(topFlap.RBPressed()){
+            topFlap.moveNegative();
+        }else{
+            topFlap.stopMotor();
         }
     }
 

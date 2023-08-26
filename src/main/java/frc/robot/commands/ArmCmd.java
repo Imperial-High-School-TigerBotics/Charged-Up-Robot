@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import java.sql.Time;
 import frc.robot.subsystems.Arm;
 
 public class ArmCmd extends CommandBase {
@@ -18,11 +17,11 @@ public class ArmCmd extends CommandBase {
 
     @Override
     public void execute() {
-       /*  if (arm.isJoystickMoved()) {
+       if (arm.isJoystickMoved()) {
             arm.moveArm(arm.controller.getRawAxis(1));
         } else {
             arm.stopArm();
-        } */
+        }
         //arm.moveToSetpoint(300000);
 
     }
