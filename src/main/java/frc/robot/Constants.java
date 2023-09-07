@@ -19,12 +19,16 @@ public final class Constants {
         //Pigeon 2.0 Gyro
         public static final int PigeonID = 13;
 
-        //Base IDs for arm, arm extender, and wrist
+        //Base IDs for arm, arm extender, wrist, hand
         public static final int armID = 16;
 
 
         public static final int extenderID = 15;
         public static final int wristID = 14;
+
+        
+        public static final int handFlapID = 0;
+        public static final int handPickUpID = 15;
 
         //Claw IDs
         public static final int Intake = 18;
@@ -115,10 +119,10 @@ public final class Constants {
         public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
 
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetDeg = 127.617188;//11
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetDeg = 273.691406;//10
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetDeg = 270.087891;//12
-        public static final double kBackRightDriveAbsoluteEncoderOffsetDeg = 123.222656;//9
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetDeg = 306.914063;//127.353516;//11
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetDeg = 95.273438; //272.460936;//10
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetDeg = 90.175718; //270.087891; //12
+        public static final double kBackRightDriveAbsoluteEncoderOffsetDeg = 62.050781; //123.222656; //9
 
         public static final double kPhysicalMaxSpeedMetersPerSecond = 4.4; // Original: 5
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI; // Original: 2 * 2 * Math.PI
